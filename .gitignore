@@ -1,0 +1,6 @@
+# VSCodium
+.cache/
+
+# Meson
+build/
+debug/
