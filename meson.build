@@ -7,7 +7,7 @@ deps = [ dependency('jemalloc') ]
 deps += c.find_library('pthread')
 
 # includes
-include_dirs = [ 'include' ]
+include_dirs = include_directories([ 'include' ])
 
 # source files.
 libsrc = [
