@@ -1,0 +1,25 @@
+kind: pipeline
+type: docker
+name: test-and-build-ksr
+
+steps:
+- name: submodules
+  image: alpine/git
+  commands:
+  - git submodule update --init --recursive
+
+- name: test
+  image: docker.madeorsk.com/madeorsk/ksr-build
+  username:
+    from_secret: docker_registry_username
+  password:
+    from_secret: docker_registry_password
+  commands:
+    - meson testsbuild
+    - ninja -C testsbuild test
+#    - meson testsbuild -Db_coverage=true
+#    - ninja -C testsbuild test
+#    - ninja -C testsbuild coverage
+
+image_pull_secrets:
+  - dockerconfig
