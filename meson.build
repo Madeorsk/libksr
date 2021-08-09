@@ -21,9 +21,11 @@ libsrc = [
 
 # library target.
 libksr = library('ksr', libsrc, dependencies : deps, include_directories : include_dirs, install : true)
+# initialize library dependency.
+libksr_dep = declare_dependency(link_with : libksr, include_directories : 'include')
 
 # add the library to the dependencies of the executables.
-deps += declare_dependency(link_with : libksr)
+deps += libksr_dep
 
 # test executables.
 test_ksrarrays = executable('test_ksrarrays', [ 'tests/ksrarrays.c' ], dependencies : deps, include_directories : include_dirs, install : false)
