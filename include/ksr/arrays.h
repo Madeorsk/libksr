@@ -87,6 +87,6 @@ static inline void ksrarray_free(ksrarray *array)
  */
 #define ksrarray_foreach(ksrarray, element) \
         for(size_t _ksrarray_get_iter_name(ksrarray, element) = 0; \
-        	(element = ksrarray.data[_ksrarray_get_iter_name(ksrarray, element)]) || true, \
-        		_ksrarray_get_iter_name(ksrarray, element) < ksrarray.length; \
+        	(element = (ksrarray).data[_ksrarray_get_iter_name(ksrarray, element)]) || true, \
+        		_ksrarray_get_iter_name(ksrarray, element) < (ksrarray).length; \
         	_ksrarray_get_iter_name(ksrarray, element)++)
