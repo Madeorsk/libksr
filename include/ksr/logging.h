@@ -25,7 +25,7 @@
 #define TERMSTYLE_INVERTED         "\033[7m"
 #define TERMSTYLE_HIDDEN           "\033[8m"
 
-#define TERMSTYLE_BOLD_RESET       "\033[21m"
+#define TERMSTYLE_BOLD_RESET       "\033[22m"
 #define TERMSTYLE_DIM_RESET        "\033[22m"
 #define TERMSTYLE_UNDERLINED_RESET "\033[24m"
 #define TERMSTYLE_BLINK_RESET      "\033[25m"
