@@ -43,7 +43,7 @@
 /**
  * Create a log string.
  */
-#define _ksrlog_log_str(label, color, str, padding_str) padding_str color TERMSTYLE_BOLD "[" label "]" TERMSTYLE_BOLD_RESET " " str TERMSTYLE_DEFAULT_COLOR
+#define _ksrlog_log_str(label, color, str, padding_str) padding_str color TERMSTYLE_BOLD "[" label "]" TERMSTYLE_BOLD_RESET " " str TERMSTYLE_DEFAULT_COLOR "\n"
 
 /**
  * Log an error.
