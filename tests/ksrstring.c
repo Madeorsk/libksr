@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <ksr/buffers.h>
 
-int main(/*int argc, char *argv[]*/)
+int main(void)
 {
 	assert(str_equals("hello", to_lowercase("heLLo")));
 	assert(str_equals("hello", to_lowercase("HELLO")));

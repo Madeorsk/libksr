@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <ksr/buffers.h>
 
-int main(/*int argc, char *argv[]*/)
+int main(void)
 {
 	// create an empty buffer and check that it is properly instantiated.
 	ksrbuffer *empty_buffer = ksrbuffer_new_empty(30);

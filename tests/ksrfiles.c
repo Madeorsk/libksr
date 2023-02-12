@@ -1,7 +1,7 @@
 #include <ksr/files.h>
 #include <assert.h>
 
-int main(/*int argc, char *argv[]*/)
+int main(void)
 {
 	// delete test directory if it exists.
 	system("rm -Rf ksrtesttesttmp");

@@ -2,7 +2,7 @@
 #include <ksr/regex.h>
 #include <ksr/string.h>
 
-int main(/*int argc, char *argv[]*/)
+int main(void)
 {
 	// try a simple regex and check that it matches properly.
 	ksregex *reg1 = ksregex_new_nogroup("^[0-9]+$", 0);

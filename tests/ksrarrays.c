@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <string.h>
 
-int main(/*int argc, char *argv[]*/)
+int main(void)
 {
 	// try to create arrays.
 	ksrarray *array_tiny = ksrarray_new_tiny();

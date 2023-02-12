@@ -14,7 +14,7 @@ void promise_execution_ok(ksrpromise *promise, void *data)
 	ksrpromise_resolve(promise, "OK");
 }
 
-void promise_execution_sigint(/*ksrpromise *promise, void *data*/)
+void promise_execution_sigint(ksrpromise *promise, void *data)
 {
 	// raise a signal to interrupt await.
 	raise(SIGINT);
@@ -44,7 +44,7 @@ void on_promise_failed(int error_code, const char *error_message, void *userdata
 	assert(str_equals("blabla", userdata));
 }
 
-int main(/*int argc, char *argv[]*/)
+int main(void)
 {
 	// try to create a promise.
 	ksrpromise *promise = ksrpromise_new(promise_execution_ok, NULL);
