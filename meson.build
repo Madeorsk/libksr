@@ -34,6 +34,7 @@ test_ksrpromises = executable('test_ksrpromises', [ 'tests/ksrpromises.c' ], dep
 test_ksregex = executable('test_ksregex', [ 'tests/ksregex.c' ], dependencies : deps, include_directories : include_dirs, install : false)
 test_ksrstring = executable('test_ksrstring', [ 'tests/ksrstring.c' ], dependencies : deps, include_directories : include_dirs, install : false)
 test_ksrfiles = executable('test_ksrfiles', [ 'tests/ksrfiles.c' ], dependencies : deps, include_directories : include_dirs, install : false)
+test_ksrlogging = executable('test_ksrlogging', [ 'tests/ksrlogging.c' ], dependencies : deps, include_directories : include_dirs, install : false)
 
 # tests.
 test('ksrarrays', test_ksrarrays)
@@ -42,3 +43,4 @@ test('ksrpromises', test_ksrpromises)
 test('ksregex', test_ksregex)
 test('ksrfiles', test_ksrfiles)
 test('ksrstring', test_ksrstring)
+test('ksrlogging', test_ksrlogging)
