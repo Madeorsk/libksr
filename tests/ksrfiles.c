@@ -11,13 +11,12 @@ int main(void)
 	write_file("ksrtesttesttmp/tmp/test.tmp", buffer);
 
 	// try to read the previously written file, and checking that the buffer has been read properly.
-	ksrbuffer *read_buffer = read_file_from_path("test.tmp");
-	assert(read_buffer->length == 13);
+	ksrbuffer *read_buffer = read_file_from_path("ksrtesttesttmp/tmp/test.tmp");
+	assert(read_buffer->length == 12);
 	assert(read_buffer->bytes[0] == 'H');
 	assert(read_buffer->bytes[3] == 'l');
 	assert(read_buffer->bytes[7] == 'o');
 	assert(read_buffer->bytes[11] == '!');
-	assert(read_buffer->bytes[12] == 0);
 
 	// delete test directory.
 	system("rm -Rf ksrtesttesttmp");

@@ -57,12 +57,11 @@ ksrbuffer* read_file(FILE *file)
 		// getting back to the beginning of the file.
 		fseek(file, 0, SEEK_SET);
 
-		// allocating a buffer corresponding to the file size, plus the end of string char.
-		ksrbuffer *buffer = ksrbuffer_new(filesize + 1);
+		// allocating a buffer corresponding to the file size.
+		ksrbuffer *buffer = ksrbuffer_new(filesize);
 
 		// reading the file into the buffer.
 		fread(buffer->bytes, 1, buffer->length, file);
-		buffer->bytes[buffer->length - 1] = 0; // 0-terminated string.
 
 		return buffer; // returning allocated buffer.
 	}
