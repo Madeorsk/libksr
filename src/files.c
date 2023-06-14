@@ -2,14 +2,18 @@
 #include <ksr/files.h>
 
 #include <string.h>
-#include <wordexp.h>
 #include <dirent.h>
 #include <libgen.h>
 #include <sys/stat.h>
 #include <errno.h>
 
+#ifndef _WIN32
+#include <wordexp.h>
+#endif
+
 char* path_exp_simple(const char* path)
 {
+#ifndef _WIN32
 	// expanding the path.
 	wordexp_t exp;
 	wordexp(path, &exp, 0);
@@ -18,8 +22,10 @@ char* path_exp_simple(const char* path)
 	wordfree(&exp); // freeing the path expansion.
 
 	return expanded_path; // returning the first expanded path.
+#else
+	return strdup(path);
+#endif
 }
-
 int mkpath(const char *path, const mode_t mode)
 {
 	// getting the current directory path to create.
@@ -37,7 +43,11 @@ int mkpath(const char *path, const mode_t mode)
 	}
 
 	// creating the current directory.
-	res = mkdir(dirpath, mode);
+	res = mkdir(dirpath
+	#ifndef _WIN32
+	, mode
+	#endif
+	);
 	if (errno == EEXIST)
 		// the directory exists, everything have been created correctly.
 		res = 0;
