@@ -31,27 +31,27 @@ ksrarray* ksrarray_new(const size_t start_size);
 /**
  * Create a tiny sized ksrarray.
  */
-static inline ksrarray* ksrarray_new_tiny()
+static inline ksrarray* ksrarray_new_tiny(void)
 { return ksrarray_new(KSRARRAY_TINY_SIZE); }
 /**
  * Create a small sized ksrarray.
  */
-static inline ksrarray* ksrarray_new_small()
+static inline ksrarray* ksrarray_new_small(void)
 { return ksrarray_new(KSRARRAY_SMALL_SIZE); }
 /**
  * Create a normal sized ksrarray.
  */
-static inline ksrarray* ksrarray_new_basic()
+static inline ksrarray* ksrarray_new_basic(void)
 { return ksrarray_new(KSRARRAY_BASIC_SIZE); }
 /**
  * Create a big sized ksrarray.
  */
-static inline ksrarray* ksrarray_new_big()
+static inline ksrarray* ksrarray_new_big(void)
 { return ksrarray_new(KSRARRAY_BIG_SIZE); }
 /**
  * Create a huge sized ksrarray.
  */
-static inline ksrarray* ksrarray_new_huge()
+static inline ksrarray* ksrarray_new_huge(void)
 { return ksrarray_new(KSRARRAY_HUGE_SIZE); }
 
 /**

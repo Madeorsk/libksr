@@ -29,7 +29,7 @@ ksrbuffer* ksrbuffer_new_from_content(const size_t buffer_size, const char *buff
 /**
  * Create a buffer of default buffer size.
  */
-static inline ksrbuffer* ksrbuffer_new_default()
+static inline ksrbuffer* ksrbuffer_new_default(void)
 {
 	return ksrbuffer_new(BUFSIZ);
 }
