@@ -133,6 +133,16 @@ typedef struct {
 	varname = ((result_type) __ksresult_cache__.result); \
 }
 /**
+ * Try to get a result and put it in the variable called varname.
+ * You must specify the type of the result you want to get.
+ * If there is an error, it is thrown directly. You cannot use this function if your function does not return a ksrerror.
+ */
+#define ksresult_get_throwerr(varname, result_type, _result) NULL; { \
+	ksresult __ksresult_cache__ = (_result); \
+	if (!ksresult_check(__ksresult_cache__)) return __ksresult_cache__.error; \
+	varname = ((result_type) __ksresult_cache__.result); \
+}
+/**
  * Try to get a result while ignoring the error if there is one.
  * You must specify the type of the result you want to get.
  * Directly return the result data.
