@@ -10,7 +10,7 @@ bool interrupted = false;
  * Function launched on signal reception.
  * @param signal - the received signal.
  */
-void onsigint(/*int signal*/)
+void onsigint(__attribute__((unused)) int signal)
 {
 	//if (signal == SIGINT)
 	// the program is now interrupted.
