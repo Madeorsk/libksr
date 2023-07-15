@@ -40,6 +40,13 @@ typedef struct {
 	ksrpromise_catch_callback_f callback;
 	void *userdata;
 } promise_catch_user_callback;
+/**
+ * Promise finally user callback.
+ */
+typedef struct {
+	ksrpromise_finally_callback_f callback;
+	void *userdata;
+} promise_finally_user_callback;
 
 /**
  * The main promise thread function.
@@ -62,6 +69,7 @@ ksrpromise* ksrpromise_new(ksrpromise_execution_f exec, void *data)
 	ksrpromise *promise = malloc(sizeof(ksrpromise));
 	promise->then_callbacks = ksrarray_new_tiny();
 	promise->catch_callbacks = ksrarray_new_tiny();
+	promise->finally_callbacks = ksrarray_new_tiny();
 	promise->successful = false;
 	promise->result = NULL;
 	promise->error_code = 0;
@@ -165,4 +173,15 @@ void ksrpromise_catch(ksrpromise *promise, ksrpromise_catch_callback_f callback,
 
 	// we use a pointer of the given function pointer as a workaround for generic arrays (see https://stackoverflow.com/a/16682718/7496951).
 	ksrarray_push(promise->catch_callbacks, user_callback);
+}
+
+void ksrpromise_finally(ksrpromise *promise, ksrpromise_finally_callback_f callback, void *userdata)
+{
+	// allocate user callback.
+	promise_finally_user_callback *user_callback = malloc(sizeof(promise_finally_user_callback));
+	user_callback->callback = callback;
+	user_callback->userdata = userdata;
+
+	// we use a pointer of the given function pointer as a workaround for generic arrays (see https://stackoverflow.com/a/16682718/7496951).
+	ksrarray_push(promise->finally_callbacks, user_callback);
 }

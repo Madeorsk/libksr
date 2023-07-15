@@ -44,12 +44,20 @@ void on_promise_failed(int error_code, const char *error_message, void *userdata
 	assert(str_equals("blabla", userdata));
 }
 
+void on_promise_finished(void *userdata)
+{
+	// checking that user data have been properly transfered.
+	assert(str_equals("test_finally", userdata));
+}
+
 int main(void)
 {
 	// try to create a promise.
 	ksrpromise *promise = ksrpromise_new(promise_execution_ok, NULL);
 	// checking that then is properly launched.
 	ksrpromise_then(promise, on_promise_ok, NULL);
+	// checking that finally is properly launched.
+	ksrpromise_finally(promise, on_promise_finished, "test_finally");
 	// checking that await is working properly on a successful promise.
 	assert(str_equals("OK", ksrpromise_await(promise)));
 
@@ -57,6 +65,8 @@ int main(void)
 	ksrpromise *promise_fail = ksrpromise_new(promise_execution_error, "hello");
 	// checking that catch is properly launched.
 	ksrpromise_catch(promise_fail, on_promise_failed, "blabla");
+	// checking that finally is properly launched.
+	ksrpromise_finally(promise, on_promise_finished, "test_finally");
 	// checking that await is working properly on a promise which fails.
 	assert(ksrpromise_await(promise_fail) == NULL);
 

@@ -14,6 +14,7 @@ typedef struct {
 	pthread_t thread;
 	ksrarray *then_callbacks; // array of then callbacks.
 	ksrarray *catch_callbacks; // array of catch callbacks.
+	ksrarray *finally_callbacks; // array of finally callbacks.
 
 	bool successful; // determine if the promise has been fulfilled or not.
 	void *result; // the promised result.
@@ -28,6 +29,8 @@ typedef void (*ksrpromise_execution_f)(ksrpromise *promise, void *userdata);
 typedef void (*ksrpromise_then_callback_f)(void *result, void *userdata);
 // type of catch callback.
 typedef void (*ksrpromise_catch_callback_f)(int code, const char *message, void *userdata);
+// type of finally callback.
+typedef void (*ksrpromise_finally_callback_f)(void *userdata);
 
 /**
  * Create a new promise.
@@ -63,6 +66,7 @@ void* ksrpromise_await(ksrpromise *promise);
  * Set a new callback to call on promise resolution.
  * @param promise - the promise for which to set a resolution callback.
  * @param callback - the callback to set.
+ * @param userdata - custom data to passed to the callback.
  */
 void ksrpromise_then(ksrpromise *promise, ksrpromise_then_callback_f, void *userdata);
 
@@ -70,8 +74,17 @@ void ksrpromise_then(ksrpromise *promise, ksrpromise_then_callback_f, void *user
  * Set a new callback to call on promise rejection.
  * @param promise - the promise for which to set a rejection callback.
  * @param callback - a callback to set.
+ * @param userdata - custom data to passed to the callback.
  */
 void ksrpromise_catch(ksrpromise *promise, ksrpromise_catch_callback_f, void *userdata);
+
+/**
+ * Set a new callback to call on promise resolution or rejection.
+ * @param promise - the promise for which to set a finally callback.
+ * @param callback - a callback to set.
+ * @param userdata - custom data to passed to the callback.
+ */
+void ksrpromise_finally(ksrpromise *promise, ksrpromise_finally_callback_f, void *userdata);
 
 /**
  * Determine if the given promise is successful or not.
